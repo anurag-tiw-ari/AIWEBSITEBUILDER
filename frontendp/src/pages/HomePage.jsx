@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { FiUser, FiLayers, FiCode, FiGlobe, FiFileText, FiArrowRight } from 'react-icons/fi';
+import Features from '../components/Features';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('portfolio');
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 text-white overflow-hidden">
 
       <div className="container mx-auto px-4 h-screen flex flex-col">
@@ -92,6 +95,7 @@ const HomePage = () => {
                     <div className="relative">
                       <input
                         type="text"
+                        disabled={true}
                         placeholder="e.g. 'A modern restaurant website with menu'"
                         className="w-full bg-gray-700/50 border border-gray-600 rounded-lg py-3 px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-purple-400/50"
                       />
@@ -100,10 +104,13 @@ const HomePage = () => {
                       </button>
                     </div>
                   </div>
-                  
+
+                  <Link to="/user/website">
                   <button className="inline-flex items-center gap-2 mt-2 px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-400/20 transition-all">
-                    Generate Website <FiArrowRight />
+                  Generate Website <FiArrowRight />
+                  
                   </button>
+                  </Link>
                 </div>
               </div>
             )}
@@ -146,7 +153,10 @@ const HomePage = () => {
           </motion.div>
         </div>
       </div>
+      <Features />
+      <Footer />
     </div>
+    </>
   );
 };
 
