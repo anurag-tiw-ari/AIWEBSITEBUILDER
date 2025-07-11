@@ -25,7 +25,7 @@ const Features = () => {
     {
       icon: <FiEdit size={24} />,
       title: "Update with Prompts",
-      description: "Already have a website? Just tell us what changes you want and we'll update it for you automatically.",
+      description: "For a Generated website, Just tell us what changes you want and we'll update it for you automatically.",
       gradient: "from-emerald-400 to-teal-500"
     },
     {

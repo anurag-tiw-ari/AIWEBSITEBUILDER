@@ -99,7 +99,6 @@ const WebsiteGenerator = () => {
 
       const response = await axiosClient.post('/user/site/prompt', updatedMessages);
       
-      // Parse the response (assuming it returns the JSON structure)
       let codeData = response.data.replace(/^```json/, '').replace(/```$/, '').trim();
       console.log("codeData:", codeData)
       codeData = JSON.parse(codeData);
@@ -153,7 +152,7 @@ const WebsiteGenerator = () => {
           </div>
         </div>
 
-        {/* Main Content */}
+
         <div className="flex-1 flex flex-col overflow-hidden">
           <header className="p-4 border-b border-gray-700 flex items-center">
             <button 
@@ -169,7 +168,6 @@ const WebsiteGenerator = () => {
 
           <div className="flex-1 overflow-hidden flex flex-col">
 
-            {/* Results Area */}
             {generatedCode ? (
               <div className="flex-1 overflow-hidden flex flex-col bg-gray-800/20">
                 <div className="border-b border-gray-700 overflow-x-auto">
@@ -314,7 +312,7 @@ const WebsiteGenerator = () => {
                 </div>
               </div>
             )}
-              {/* Prompt Input */}
+    
             <div className="p-4 md:p-6 flex items-center justify-center">
               <div className="w-full max-w-3xl">
                 <div className="relative">

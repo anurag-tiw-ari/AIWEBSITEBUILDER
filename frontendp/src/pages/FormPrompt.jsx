@@ -31,7 +31,7 @@ const FormPrompt = () => {
   const resultsRef = useRef(null);
   const navigate = useNavigate();
 
-  // Auto-scroll to results when generated
+
   useEffect(() => {
     if (portfolio && resultsRef.current) {
       resultsRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -442,7 +442,7 @@ const FormPrompt = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800">
       <div className="container mx-auto p-4 lg:p-8 max-w-6xl">
-        {/* Progress Steps */}
+
         <div className="steps steps-horizontal w-full mb-8">
           <div className={`step ${step >= 1 ? 'step-primary' : ''}`}>
             <div className="step-circle text-white">
@@ -462,7 +462,7 @@ const FormPrompt = () => {
           </div>
         </div>
 
-        {/* Main Form Card */}
+ 
         <div className="card bg-gray-800/50 backdrop-blur-md border border-gray-700 shadow-xl">
           <div className="card-body">
             <h1 className="card-title text-3xl mb-6 text-white">Create Your Portfolio</h1>
@@ -510,7 +510,6 @@ const FormPrompt = () => {
           </div>
         </div>
 
-        {/* Results Section - Visible immediately in viewport */}
         {portfolio && (
           <div 
             ref={resultsRef}
@@ -570,8 +569,7 @@ const FormPrompt = () => {
               </div>
             </div>
             </div>
-
-            {/* Code Panel */}
+            
             <div className="card bg-gray-800/50 backdrop-blur-md border border-gray-700 shadow-xl h-fit">
               <div className="card-body">
                 <h3 className="card-title text-xl text-white mb-4">Generated Code</h3>
