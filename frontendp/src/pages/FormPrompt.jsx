@@ -5,7 +5,7 @@ import Editor from '@monaco-editor/react';
 import { Link, useNavigate } from 'react-router';
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { FiUser, FiBook, FiCode, FiBriefcase, FiDownload, FiExternalLink, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import { FiUser, FiBook, FiCode, FiBriefcase, FiDownload, FiExternalLink, FiArrowLeft, FiArrowRight,FiAlertTriangle } from 'react-icons/fi';
 
 const FormPrompt = () => {
   const [step, setStep] = useState(1);
@@ -42,7 +42,17 @@ const FormPrompt = () => {
     if (!portfolio) return;
     
     const zip = new JSZip();
-    zip.file("index.html", portfolio['index.html']);
+        zip.file("index.html", `<!DOCTYPE html>
+     <html>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+       </head>
+      <body>
+        ${portfolio['index.html']}
+        <script src="script.js"></script>
+      </body>
+    </html>` );
     zip.file("style.css", portfolio['style.css']);
     zip.file("script.js", portfolio['script.js']);
 
@@ -334,21 +344,21 @@ const FormPrompt = () => {
   const renderCodeTab = () => {
     if (!portfolio) return null;
 
-    const codeContent = {
-      html: `<!DOCTYPE html>
-<html>
-  <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    ${portfolio['index.html']}
-    <script src="script.js"></script>
-  </body>
-</html>` || '',
-      css: portfolio['style.css'] || '',
-      javascript: portfolio['script.js'] || ''
-    };
+//     const codeContent = {
+//       html: `<!DOCTYPE html>
+// <html>
+//   <head>
+//   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+//     <link rel="stylesheet" href="style.css">
+//   </head>
+//   <body>
+//     ${portfolio['index.html']}
+//     <script src="script.js"></script>
+//   </body>
+// </html>` || '',
+//       css: portfolio['style.css'] || '',
+//       javascript: portfolio['script.js'] || ''
+//     };
 
     return (
       <div className="mt-6">
@@ -374,20 +384,56 @@ const FormPrompt = () => {
         </div>
         
         <div className="border border-gray-700 rounded-b-lg overflow-hidden">
-          <Editor
-            height="300px"
-            language={activeTab}
-            theme="vs-dark"
-            value={codeContent[activeTab]}
-            options={{
-              readOnly: true,
-              minimap: { enabled: false },
-              fontSize: 14,
-              wordWrap: 'on',
-              lineNumbers: 'on',
-              automaticLayout: true
-            }}
-          />
+                 <div className={`${activeTab === 'html' ? 'block' : 'hidden'}`}>
+                    <Editor
+                      height="500px"
+                      defaultLanguage="html"
+                      value={portfolio['index.html'] }
+                      onChange={(value) => setPortfolio((prev)=>{
+                        return {...prev,"index.html":value}
+                      })}
+                      theme="vs-dark"
+                      options={{
+                        minimap: { enabled: false },
+                        fontSize: 14,
+                        wordWrap: 'on'
+                      }}
+                    />
+                  </div>
+
+                  <div className={` ${activeTab === 'css' ? 'block' : 'hidden'}`}>
+                    <Editor
+                      height="500px"
+                      defaultLanguage="css"
+                      value={portfolio["style.css"]}
+                      onChange={(value) => setPortfolio((prev)=>{
+                        return {...prev,"style.css":value}
+                      })}
+                      theme="vs-dark"
+                      options={{
+                        minimap: { enabled: false },
+                        fontSize: 14,
+                        wordWrap: 'on'
+                      }}
+                    />
+                  </div>
+
+                  <div className={`${activeTab === 'javascript' ? 'block' : 'hidden'}`}>
+                    <Editor
+                      height="500px"
+                      defaultLanguage="javascript"
+                      value={portfolio["script.js"]}
+                     onChange={(value) => setPortfolio((prev)=>{
+                        return {...prev,"script.js":value}
+                      })}
+                      theme="vs-dark"
+                      options={{
+                        minimap: { enabled: false },
+                        fontSize: 14,
+                        wordWrap: 'on'
+                      }}
+                    />
+                  </div>
         </div>
       </div>
     );
@@ -509,6 +555,20 @@ const FormPrompt = () => {
                   </Link>
                 </div>
               </div>
+              <div className='flex justify-center'>
+              <div className="bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-xl p-2 shadow-2xl mx-4 mt-2">
+                <div className="flex items-center gap-3 justify-center">
+                  <div className="flex-shrink-0 p-2 rounded-lg bg-rose-500/20 text-rose-400">
+                    <FiAlertTriangle size={20} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium text-white">Not satisfied with the result?</h3>
+                    <p className="text-sm text-gray-300 mt-1">You can edit code in real time like an IDE or give a new prompt to update the website.</p>
+                  </div>
+                </div>
+               
+              </div>
+            </div>
             </div>
 
             {/* Code Panel */}
@@ -518,7 +578,9 @@ const FormPrompt = () => {
                 {renderCodeTab()}
               </div>
             </div>
+              
           </div>
+          
         )}
       </div>
     </div>
