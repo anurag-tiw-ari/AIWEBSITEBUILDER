@@ -36,7 +36,7 @@ const Features = () => {
       gradient: "from-violet-400 to-indigo-500"
     },
     {
-      icon: <FiDeploy size={24} />,
+      icon: <GrDeploy size={24} />,
       title: "Deply in minutes",
       description: "Get all your website Live With just One Click. Full ownership of your website.",
       gradient: "from-emerald-400 to-teal-500"
