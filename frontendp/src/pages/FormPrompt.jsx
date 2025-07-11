@@ -364,19 +364,19 @@ const FormPrompt = () => {
       <div className="mt-6">
         <div className="tabs tabs-boxed bg-gray-800">
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white/70'}`}
+            className={`tab flex items-center gap-2 ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('html')}
           >
             <FiCode /> index.html
           </button>
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white/70'}`}
+            className={`tab flex items-center gap-2 ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('css')}
           >
             <FiCode /> style.css
           </button>
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white/70'}`}
+            className={`tab flex items-center gap-2 ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('javascript')}
           >
             <FiCode /> script.js
@@ -569,7 +569,7 @@ const FormPrompt = () => {
               </div>
             </div>
             </div>
-            
+
             <div className="card bg-gray-800/50 backdrop-blur-md border border-gray-700 shadow-xl h-fit">
               <div className="card-body">
                 <h3 className="card-title text-xl text-white mb-4">Generated Code</h3>

@@ -40,7 +40,7 @@ function UserPortfolio() {
   state ? (
     <div className="card bg-base-100 shadow-xl mt-8 bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800">
       <div className="card-body">
-        <h2 className="card-title text-2xl mb-4">Your Website Preview</h2>
+        <h2 className="card-title text-2xl mb-4 text-white">Your Website Preview</h2>
         <div className="border rounded-lg overflow-hidden">
           <iframe
             title="Portfolio Preview"
@@ -74,19 +74,19 @@ function UserPortfolio() {
       <div className="mt-6">
         <div className="tabs tabs-boxed bg-gray-800">
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white/70'}`}
+            className={`tab flex items-center gap-2 ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('html')}
           >
             <FiCode /> index.html
           </button>
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white/70'}`}
+            className={`tab flex items-center gap-2 ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('css')}
           >
             <FiCode /> style.css
           </button>
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white/70'}`}
+            className={`tab flex items-center gap-2 ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('javascript')}
           >
             <FiCode /> script.js

@@ -173,25 +173,25 @@ const WebsiteGenerator = () => {
                 <div className="border-b border-gray-700 overflow-x-auto">
                   <div className="flex min-w-max">
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'preview' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-gray-400 hover:text-white'}`}
+                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'preview' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
                       onClick={() => setActiveTab('preview')}
                     >
                       <FiGlobe /> Preview
                     </button>
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'html' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-gray-400 hover:text-white'}`}
+                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'html' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
                       onClick={() => setActiveTab('html')}
                     >
                       <FiCode /> HTML
                     </button>
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'css' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-gray-400 hover:text-white'}`}
+                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'css' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
                       onClick={() => setActiveTab('css')}
                     >
                       <FiCode /> CSS
                     </button>
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'js' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-gray-400 hover:text-white'}`}
+                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'js' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
                       onClick={() => setActiveTab('js')}
                     >
                       <FiCode /> JavaScript
