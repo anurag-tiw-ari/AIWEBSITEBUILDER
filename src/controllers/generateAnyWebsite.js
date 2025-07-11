@@ -83,29 +83,7 @@ const modernDesignEffects = [
   }
 ]; 
 
-🌈 Color Palette (CSS variables):
-:root {
-  /* Light Theme */
-  --primary-light: #4361ee;
-  --secondary-light: #3f37c9;
-  --accent-light: #4cc9f0;
-  --text-light: #2b2d42;
-  --bg-light: #f8f9fa;
-  --card-light: rgba(255, 255, 255, 0.9);
-  
-  /* Dark Theme */
-  --primary-dark: #7209b7;
-  --secondary-dark: #560bad;
-  --accent-dark: #b5179e;
-  --text-dark: #f8f9fa;
-  --bg-dark: #212529;
-  --card-dark: rgba(33, 37, 41, 0.9);
-}
 
-🎨 Gradient Options:
-1. Linear: 135deg, var(--primary) 0%, var(--secondary) 100%
-2. Radial: circle at center, var(--primary) 0%, var(--secondary) 100%
-3. Glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)
 
 
 💡 Design Guidelines:
