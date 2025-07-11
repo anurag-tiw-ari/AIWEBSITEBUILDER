@@ -132,7 +132,9 @@ const modernDesignEffects = [
 
 ***NavBar Button Rules***
 - <a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });">About</a>
-- Use Javascript for smooth scrolling 
+- Use Javascript for smooth scrolling
+
+### STRICTLY FOLLOW NAVBAR BUTTON RULES ALWAYS USE javascript:void(0) in href attribute of anchor tag
 
 ✨ UI Features to Include:
 1. Animated hero section with typed effect
