@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiLayers, FiCode, FiGlobe, FiFileText, FiDownload, FiEdit } from 'react-icons/fi';
+import { GrDeploy } from 'react-icons/gr';
 
 const Features = () => {
   const features = [
@@ -33,6 +34,12 @@ const Features = () => {
       title: "Download as ZIP",
       description: "Get all your website files packaged neatly for easy deployment anywhere. Full ownership of your code.",
       gradient: "from-violet-400 to-indigo-500"
+    },
+    {
+      icon: <FiDeploy size={24} />,
+      title: "Deply in minutes",
+      description: "Get all your website Live With just One Click. Full ownership of your website.",
+      gradient: "from-emerald-400 to-teal-500"
     },
   ];
 
