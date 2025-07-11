@@ -4,6 +4,8 @@ import { saveAs } from "file-saver";
 import { useState } from "react";
 import { FiCode,FiAlertTriangle,FiDownload } from "react-icons/fi";
 import { Editor } from "@monaco-editor/react";
+import axiosClient from "../utils/axiosClient";
+import { GrDeploy } from "react-icons/gr";
 
 function UserPortfolio() {
 
@@ -11,6 +13,7 @@ function UserPortfolio() {
    console.log(state)
    const [code,setCode] = useState(state)
    const [activeTab,setActiveTab] = useState('html')
+   const [isDeploying,setIsDeploying] = useState(false)
 
    const handleZip = () => {
        
@@ -36,6 +39,39 @@ function UserPortfolio() {
        });
    
      }
+
+     const handleDeploy = async () => {
+    try{
+      setIsDeploying(true)
+  const res = await axiosClient.post("/deploy/netlify", {
+    
+      html: `<!DOCTYPE html>
+     <html>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+       </head>
+      <body>
+        ${code['index.html']}
+        <script src="script.js"></script>
+      </body>
+    </html>`,
+      css: code['style.css'],
+      js: code['script.js'],
+  });
+
+
+  alert("Site Deployed at: " + res.data.url);
+}
+catch(err)
+{
+  alert("Error:",err)
+  setIsDeploying(false)
+}
+finally{
+    setIsDeploying(false)
+}
+};
     return (
   state ? (
     <div className="card bg-base-100 shadow-xl mt-8 bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800">
@@ -66,8 +102,15 @@ function UserPortfolio() {
             >
               <FiDownload /> Download
             </button>
-              <div className="flex ml-6 bg-amber-400  text-gray-900 p-4 rounded-2xl gap-2 items-center font-bold text-xl">
-                <FiAlertTriangle className="text-gray-900"/> Before Exiting This Page Ensure You have downloaded The zip else you will lose the website
+            <button 
+            className="btn bg-gradient-to-r from-indigo-500 to-indigo-600 border-none text-white flex items-center gap-2"
+            onClick={handleDeploy}
+          >
+          {isDeploying ? "Deploying..." : (<><GrDeploy /> Deploy</>)}
+
+          </button>
+              <div className="flex ml-6 bg-gray-300  text-red-500 p-4 rounded-2xl gap-2 items-center font-bold text-md">
+                <FiAlertTriangle /> Before Exiting This Page Ensure You have downloaded The zip else you will lose the website
               </div>
             </div>
       </div>

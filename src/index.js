@@ -6,6 +6,7 @@ import imageRouter from "./routes/image.js";
 import cors from "cors"
 dotenv.config();
 import path from "path"
+import deployRouter from "./routes/deploy.js";
 
 
 const __dirname = path.resolve()
@@ -23,6 +24,7 @@ app.use(express.json())
 
 app.use("/user",promptRouter)
 app.use("/photo",imageRouter)
+app.use("/deploy",deployRouter)
 
 app.use(express.static(path.join(__dirname,"/frontendp","dist")))
 

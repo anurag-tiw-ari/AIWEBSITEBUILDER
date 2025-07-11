@@ -5,6 +5,7 @@ import Editor from '@monaco-editor/react';
 import { Link, useNavigate } from 'react-router';
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { GrDeploy } from "react-icons/gr";
 import { FiUser, FiBook, FiCode, FiBriefcase, FiDownload, FiExternalLink, FiArrowLeft, FiArrowRight,FiAlertTriangle } from 'react-icons/fi';
 
 const FormPrompt = () => {
@@ -25,6 +26,7 @@ const FormPrompt = () => {
   const [portfolio, setPortfolio] = useState(null);
   const [messages, setMessages] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isDeploying, setIsDeploying] = useState(false);
   const fileInputRef = useRef(null);
   const [uploading, setUploading] = useState(false);
   const [activeTab, setActiveTab] = useState('html');
@@ -97,6 +99,40 @@ const FormPrompt = () => {
       [name]: value
     }));
   };
+
+  const handleDeploy = async () => {
+    try{
+      setIsDeploying(true)
+  const res = await axiosClient.post("/deploy/netlify", {
+    
+      html: `<!DOCTYPE html>
+     <html>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+       </head>
+      <body>
+        ${portfolio['index.html']}
+        <script src="script.js"></script>
+      </body>
+    </html>`,
+      css: portfolio['style.css'],
+      js: portfolio['script.js'],
+  });
+
+
+  alert("Site Deployed at: " + res.data.url);
+}
+catch(err)
+{
+  alert("Error:",err)
+  setIsDeploying(false)
+}
+finally{
+    setIsDeploying(false)
+}
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -544,6 +580,13 @@ const FormPrompt = () => {
                     onClick={handleZip}
                   >
                     <FiDownload /> Download
+                  </button>
+                   <button 
+                    className="btn bg-gradient-to-r from-indigo-500 to-indigo-600 border-none text-white flex items-center gap-2"
+                    onClick={handleDeploy}
+                  >
+                   {isDeploying ? "Deploying..." : (<><GrDeploy /> Deploy</>)}
+
                   </button>
                   <Link 
                     to="/user/portfolio" 
