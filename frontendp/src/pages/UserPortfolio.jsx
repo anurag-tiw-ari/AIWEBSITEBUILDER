@@ -74,19 +74,19 @@ function UserPortfolio() {
       <div className="mt-6">
         <div className="tabs tabs-boxed bg-gray-800">
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
+            className={`tab flex items-center gap-2 text-white ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('html')}
           >
             <FiCode /> index.html
           </button>
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
+            className={`tab flex items-center gap-2 text-white ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('css')}
           >
             <FiCode /> style.css
           </button>
           <button 
-            className={`tab flex items-center gap-2 ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
+            className={`tab flex items-center gap-2 text-white ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
             onClick={() => setActiveTab('javascript')}
           >
             <FiCode /> script.js
