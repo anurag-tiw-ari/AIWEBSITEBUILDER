@@ -107,7 +107,7 @@ const HomePage = () => {
 
                   <Link to="/user/website">
                   <button className="inline-flex items-center gap-2 mt-2 px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-400/20 transition-all">
-                  Generate Website <FiArrowRight />
+                  Start Generating <FiArrowRight />
                   
                   </button>
                   </Link>
