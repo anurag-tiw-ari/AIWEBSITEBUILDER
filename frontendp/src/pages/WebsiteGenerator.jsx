@@ -47,28 +47,32 @@ const WebsiteGenerator = () => {
     }
   }, [generatedCode]);
 
-  const handleZip = () => {
-      if (!portfolio) return;
-      
-      const zip = new JSZip();
-          zip.file("index.html", `<!DOCTYPE html>
-       <html>
-        <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-          <link rel="stylesheet" href="style.css">
-         </head>
-        <body>
-          ${generatedCode['index.html']}
-          <script src="script.js"></script>
-        </body>
-      </html>` );
-      zip.file("style.css", generatedCode['style.css']);
-      zip.file("script.js", generatedCode['script.js']);
-  
-      zip.generateAsync({type:"blob"}).then(function(content) {
-        saveAs(content, "website.zip");
-      });
-    };
+ const handleZip = () => {
+    const zip = new JSZip();
+
+    console.log("Hello")
+
+    zip.file(
+      "index.html",
+      `<!DOCTYPE html>
+     <html>
+      <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+       </head>
+      <body>
+        ${generatedCode["index.html"]}
+        <script src="script.js"></script>
+      </body>
+    </html>`
+    );
+    zip.file("style.css", generatedCode["style.css"]);
+    zip.file("script.js", generatedCode["script.js"]);
+
+    zip.generateAsync({ type: "blob" }).then(function (content) {
+      saveAs(content, "portfolio.zip");
+    });
+  };
 
   const handleDeploy = async () => {
     try{
@@ -196,45 +200,74 @@ finally{
             >
               {showSidebar ? <FiX /> : <FiMenu />}
             </button>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+            <div className='flex justify-between items-center w-full'>
+            <h1 className="text-sm sm:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
               AI Website Generator
             </h1>
+                        {isGenerated && (
+              <div className="flex gap-3">
+                 <button
+              className="btn bg-gradient-to-r from-cyan-500 to-blue-600 border-none text-white flex items-center gap-2 hover:scale-105 transition-transform"
+              onClick={handleZip}
+            >
+              <FiDownload /> Download
+            </button>
+            <button
+              className="btn bg-gradient-to-r from-indigo-500 to-indigo-600 border-none text-white flex items-center gap-2 hover:scale-105 transition-transform"
+              onClick={handleDeploy}
+              disabled={isDeploying}
+            >
+              {isDeploying ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                <>
+                  <GrDeploy /> Deploy
+                </>
+              )}
+            </button>
+              </div>
+              
+            )}
+            </div>
           </header>
 
           <div className="flex-1 overflow-hidden flex flex-col">
 
-            {generatedCode ? (
-              <div className="flex-1 overflow-hidden flex flex-col bg-gray-800/20">
-                <div className="border-b border-gray-700 overflow-x-auto">
-                  <div className="flex min-w-max">
+             {generatedCode ? (
+              <>
+                {/* Tab Navigation */}
+                <div className="border-b border-gray-700 bg-gray-800/50 backdrop-blur-sm">
+                  <div className="flex overflow-x-auto">
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'preview' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
+                      className={`px-6 py-3 font-medium flex items-center gap-2 transition-colors ${activeTab === 'preview' ? 'text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
                       onClick={() => setActiveTab('preview')}
                     >
-                      <FiGlobe /> Preview
+                      <FiGlobe size={16} /> Preview
                     </button>
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'html' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
+                      className={`px-6 py-3 font-medium flex items-center gap-2 transition-colors ${activeTab === 'html' ? 'text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
                       onClick={() => setActiveTab('html')}
                     >
-                      <FiCode /> HTML
+                      <FiCode size={16} /> HTML
                     </button>
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'css' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
+                      className={`px-6 py-3 font-medium flex items-center gap-2 transition-colors ${activeTab === 'css' ? 'text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
                       onClick={() => setActiveTab('css')}
                     >
-                      <FiCode /> CSS
+                      <FiCode size={16} /> CSS
                     </button>
                     <button
-                      className={`px-4 md:px-6 py-3 font-medium flex items-center gap-2 ${activeTab === 'js' ? 'border-b-2 border-cyan-400 text-cyan-400' : 'text-white'}`}
+                      className={`px-6 py-3 font-medium flex items-center gap-2 transition-colors ${activeTab === 'js' ? 'text-cyan-400 border-b-2 border-cyan-400' : 'text-gray-400 hover:text-white'}`}
                       onClick={() => setActiveTab('js')}
                     >
-                      <FiCode /> JavaScript
+                      <FiCode size={16} /> JavaScript
                     </button>
                   </div>
                 </div>
 
+                {/* Tab Content */}
                 <div className="flex-1 overflow-hidden">
+                  {/* Preview Tab */}
                   <div className={`h-full ${activeTab === 'preview' ? 'block' : 'hidden'}`}>
                     <iframe
                       ref={iframeRef}
@@ -242,98 +275,66 @@ finally{
                       className="w-full h-full border-0 bg-white"
                       sandbox="allow-scripts allow-same-origin"
                     />
+                    <div className="absolute bottom-4 right-4">
+                      <Link 
+                        to="/user/portfolio" 
+                        state={generatedCode}
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-800/90 backdrop-blur-md rounded-lg border border-gray-700 hover:bg-gray-700/50 transition-colors"
+                      >
+                        <FiExternalLink size={16} /> Fullscreen
+                      </Link>
+                    </div>
                   </div>
 
-                  <div className={`h-full ${activeTab === 'html' ? 'block' : 'hidden'}`}>
-                    <Editor
-                      height="100%"
-                      defaultLanguage="html"
-                      value={htmlCode}
-                      onChange={(value) => setGeneratedCode((prev)=>{
-                        return {...prev,"index.html":value}
-                      })}
-                      theme="vs-dark"
-                      options={{
-                        minimap: { enabled: false },
-                        fontSize: 14,
-                        wordWrap: 'on'
-                      }}
-                    />
-                  </div>
+                  {/* Code Editor Tabs */}
+                  <div className={`h-full ${activeTab !== 'preview' ? 'block' : 'hidden'}`}>
+                    <div className={`h-full ${activeTab === 'html' ? 'block' : 'hidden'}`}>
+                      <Editor
+                        height="100%"
+                        defaultLanguage="html"
+                        value={htmlCode}
+                        onChange={(value) => setGeneratedCode(prev => ({ ...prev, "index.html": value }))}
+                        theme="vs-dark"
+                        options={{
+                          minimap: { enabled: false },
+                          fontSize: 14,
+                          wordWrap: 'on'
+                        }}
+                      />
+                    </div>
 
-                  <div className={`h-full ${activeTab === 'css' ? 'block' : 'hidden'}`}>
-                    <Editor
-                      height="100%"
-                      defaultLanguage="css"
-                      value={cssCode}
-                      onChange={(value) => setGeneratedCode((prev)=>{
-                        return {...prev,"style.css":value}
-                      })}
-                      theme="vs-dark"
-                      options={{
-                        minimap: { enabled: false },
-                        fontSize: 14,
-                        wordWrap: 'on'
-                      }}
-                    />
-                  </div>
+                    <div className={`h-full ${activeTab === 'css' ? 'block' : 'hidden'}`}>
+                      <Editor
+                        height="100%"
+                        defaultLanguage="css"
+                        value={cssCode}
+                        onChange={(value) => setGeneratedCode(prev => ({ ...prev, "style.css": value }))}
+                        theme="vs-dark"
+                        options={{
+                          minimap: { enabled: false },
+                          fontSize: 14,
+                          wordWrap: 'on'
+                        }}
+                      />
+                    </div>
 
-                  <div className={`h-full ${activeTab === 'js' ? 'block' : 'hidden'}`}>
-                    <Editor
-                      height="100%"
-                      defaultLanguage="javascript"
-                      value={jsCode}
-                     onChange={(value) => setGeneratedCode((prev)=>{
-                        return {...prev,"script.js":value}
-                      })}
-                      theme="vs-dark"
-                      options={{
-                        minimap: { enabled: false },
-                        fontSize: 14,
-                        wordWrap: 'on'
-                      }}
-                    />
+                    <div className={`h-full ${activeTab === 'js' ? 'block' : 'hidden'}`}>
+                      <Editor
+                        height="100%"
+                        defaultLanguage="javascript"
+                        value={jsCode}
+                        onChange={(value) => setGeneratedCode(prev => ({ ...prev, "script.js": value }))}
+                        theme="vs-dark"
+                        options={{
+                          minimap: { enabled: false },
+                          fontSize: 14,
+                          wordWrap: 'on'
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
-                 <div className='flex items-center justify-between'>
-                 <div className="flex flex-wrap gap-2 mt-4">
-                  <button 
-                    className="btn bg-gradient-to-r from-cyan-500 to-blue-600 border-none text-white flex items-center gap-2"
-                    onClick={handleZip}
-                  >
-                    <FiDownload /> Download
-                  </button>
-                   <button 
-                    className="btn bg-gradient-to-r from-indigo-500 to-indigo-600 border-none text-white flex items-center gap-2"
-                    onClick={handleDeploy}
-                >
-                    {isDeploying ? "Deploying..." : (<><GrDeploy /> Deploy</>)}
-
-                </button>
-                  <Link 
-                    to="/user/portfolio" 
-                    state={generatedCode}
-                    className="btn btn-outline border-gray-600 text-white flex items-center gap-2"
-                  >
-                    <FiExternalLink /> Fullscreen
-                  </Link>
-                </div>
-              <div className='flex justify-center'>
-  <div className="bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-xl p-2 shadow-2xl mx-4 mt-2">
-    <div className="flex items-center gap-3 justify-center">
-      <div className="flex-shrink-0 p-2 rounded-lg bg-rose-500/20 text-rose-400">
-        <FiAlertTriangle size={20} />
-      </div>
-      <div className="flex-1">
-        <h3 className="font-medium text-white">Not satisfied with the result?</h3>
-        <p className="text-sm text-gray-300 mt-1">You can edit code in real time like an IDE or give a new prompt to update the website.</p>
-      </div>
-    </div>
-   
-  </div>
-</div>
-</div>
-              </div>
+              </>
             ) : (
               <div className="flex-1 flex items-center justify-center p-4 md:p-6">
                 <div className="text-center max-w-lg">
@@ -382,6 +383,19 @@ finally{
                     {loading ? 'Updating...' : 'Update'}
                   </button>
                 </div>
+                {isGenerated && (
+                  <div className="mt-2 bg-gray-700/50 rounded-lg p-3 flex items-start gap-3">
+                    <div className="flex-shrink-0 p-2 rounded-lg bg-yellow-500/20 text-yellow-400">
+                      <FiAlertTriangle size={18} />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white mb-1">Not satisfied with the result?</h4>
+                      <p className="text-sm text-gray-300">
+                        You can edit the code directly in the editors above or modify your prompt and click "Update" to regenerate.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

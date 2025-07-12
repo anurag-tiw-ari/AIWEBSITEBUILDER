@@ -398,26 +398,38 @@ finally{
 
     return (
       <div className="mt-6">
-        <div className="tabs tabs-boxed bg-gray-800">
-          <button 
-            className={`tab flex items-center gap-2 text-white ${activeTab === 'html' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
-            onClick={() => setActiveTab('html')}
-          >
-            <FiCode /> index.html
-          </button>
-          <button 
-            className={`tab flex items-center gap-2 text-white ${activeTab === 'css' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
-            onClick={() => setActiveTab('css')}
-          >
-            <FiCode /> style.css
-          </button>
-          <button 
-            className={`tab flex items-center gap-2 text-white ${activeTab === 'javascript' ? 'tab-active bg-cyan-600 text-white' : 'text-white'}`}
-            onClick={() => setActiveTab('javascript')}
-          >
-            <FiCode /> script.js
-          </button>
-        </div>
+        <div className="tabs bg-gray-700 rounded-t-lg p-2">
+  <button
+    className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium ${
+      activeTab === "html"
+        ? "bg-cyan-600 text-white shadow-lg"
+        : "text-gray-300 hover:text-white hover:bg-gray-600"
+    }`}
+    onClick={() => setActiveTab("html")}
+  >
+    <FiCode /> index.html
+  </button>
+  <button
+    className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium ${
+      activeTab === "css"
+        ? "bg-cyan-600 text-white shadow-lg"
+        : "text-gray-300 hover:text-white hover:bg-gray-600"
+    }`}
+    onClick={() => setActiveTab("css")}
+  >
+    <FiCode /> style.css
+  </button>
+  <button
+    className={`flex items-center gap-2 px-4 py-2 rounded-md font-medium ${
+      activeTab === "javascript"
+        ? "bg-cyan-600 text-white shadow-lg"
+        : "text-gray-300 hover:text-white hover:bg-gray-600"
+    }`}
+    onClick={() => setActiveTab("javascript")}
+  >
+    <FiCode /> script.js
+  </button>
+</div>
         
         <div className="border border-gray-700 rounded-b-lg overflow-hidden">
                  <div className={`${activeTab === 'html' ? 'block' : 'hidden'}`}>
@@ -588,29 +600,26 @@ finally{
                    {isDeploying ? "Deploying..." : (<><GrDeploy /> Deploy</>)}
 
                   </button>
-                  <Link 
+                   <Link 
                     to="/user/portfolio" 
                     state={portfolio}
-                    className="btn btn-outline border-gray-600 text-white flex items-center gap-2"
+                    className="btn flex items-center gap-2 px-4 py-2 bg-gray-800/90 backdrop-blur-md rounded-lg border border-gray-700 hover:bg-gray-700/50 transition-colors text-white"
                   >
-                    <FiExternalLink /> Fullscreen
+                    <FiExternalLink size={16} /> Fullscreen
                   </Link>
                 </div>
               </div>
-              <div className='flex justify-center'>
-              <div className="bg-gray-800/90 backdrop-blur-md border border-gray-700 rounded-xl p-2 shadow-2xl mx-4 mt-2">
-                <div className="flex items-center gap-3 justify-center">
-                  <div className="flex-shrink-0 p-2 rounded-lg bg-rose-500/20 text-rose-400">
-                    <FiAlertTriangle size={20} />
+              <div className="mt-2 bg-gray-700/50 rounded-lg p-3 flex items-start gap-3">
+                  <div className="flex-shrink-0 p-2 rounded-lg bg-yellow-500/20 text-yellow-400">
+                    <FiAlertTriangle size={18} />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-medium text-white">Not satisfied with the result?</h3>
-                    <p className="text-sm text-gray-300 mt-1">You can edit code in real time like an IDE or give a new prompt to update the website.</p>
+                  <div>
+                    <h4 className="font-medium text-white mb-1">Not satisfied with the result?</h4>
+                    <p className="text-sm text-gray-300">
+                      You can edit the code directly in the editors above or modify your prompt and click "Update" to regenerate.
+                    </p>
                   </div>
                 </div>
-               
-              </div>
-            </div>
             </div>
 
             <div className="card bg-gray-800/50 backdrop-blur-md border border-gray-700 shadow-xl h-fit">

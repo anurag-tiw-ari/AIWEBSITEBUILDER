@@ -4,9 +4,17 @@ import { motion } from 'framer-motion';
 import { FiUser, FiLayers, FiCode, FiGlobe, FiFileText, FiArrowRight } from 'react-icons/fi';
 import Features from '../components/Features';
 import Footer from '../components/Footer';
-
+import { useNavigate } from 'react-router';
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('portfolio');
+
+  const navigate = useNavigate();
+
+  const handleGenerateClick = () => {
+    
+    navigate("/user/website")
+
+  }
 
   return (
     <>
@@ -95,13 +103,13 @@ const HomePage = () => {
                     <div className="relative">
                       <input
                         type="text"
-                        disabled={true}
-                        placeholder="e.g. 'A modern restaurant website with menu'"
-                        className="w-full bg-gray-700/50 border border-gray-600 rounded-lg py-3 px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+                        readOnly
+                        value="e.g. 'A modern restaurant website with menu'"
+                        className="w-full bg-gray-700/50 border border-gray-600 rounded-lg py-3 px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-purple-400/50 cursor-pointer"
+                        onClick={handleGenerateClick}
+                        title="Click the generate button to start"
                       />
-                      <button className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-purple-400">
-                        <FiArrowRight />
-                      </button>
+                  
                     </div>
                   </div>
 
