@@ -28,7 +28,7 @@ const deployWithNetlify = async (req, res) => {
       {},
       {
         headers: {
-          Authorization: `Bearer nfp_6FGyLfpT3FQf76vft2qxK5PWJt9iKWNd789c`,
+          Authorization: `Bearer ${process.env.NETLIFY_ACCESS_TOKEN}`,
         },
       }
     );
@@ -40,7 +40,7 @@ const deployWithNetlify = async (req, res) => {
       { files: preparedFiles },
       {
         headers: {
-          Authorization: `Bearer nfp_6FGyLfpT3FQf76vft2qxK5PWJt9iKWNd789c`,
+          Authorization: `Bearer ${process.env.NETLIFY_ACCESS_TOKEN}`,
         },
       }
     );
@@ -57,7 +57,7 @@ const deployWithNetlify = async (req, res) => {
         content,
         {
           headers: {
-            "Authorization": `Bearer nfp_6FGyLfpT3FQf76vft2qxK5PWJt9iKWNd789c`,
+            "Authorization": `Bearer ${process.env.NETLIFY_ACCESS_TOKEN}`,
             "Content-Type": "application/octet-stream",
           },
         }

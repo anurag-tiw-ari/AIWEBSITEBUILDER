@@ -180,6 +180,8 @@ Return a JSON object with exactly these three keys:
 
 ### UNDERSTANF USER IP AND THEN GENERATE WEBSITE ACCORDINGLY
 
+### ALWAYS GIVE ONLY OBJECT IN RESPONSE NO EXPLANATION 
+
 ✨ Output a full, polished resume site every time — mobile-friendly, elegant, functional.
 `
 
